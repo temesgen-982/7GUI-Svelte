@@ -4,7 +4,7 @@
 	let { children } = $props();
 </script>
 
-<div class="grid min-h-screen bg-neutral-200">
+<div class="grid min-h-screen grid-rows-[auto_1fr_auto] bg-neutral-200">
 	<nav class="flex items-center justify-center self-start border-b p-4">
 		<ul class="flex gap-4">
 			<li><a href="/Counter">Counter</a></li>
@@ -17,7 +17,7 @@
 			<li><a href="/Comments">Comments</a></li>
 		</ul>
 	</nav>
-	<main class="container grid w-full items-center justify-center">
+	<main class="flex h-full w-full">
 		{@render children()}
 	</main>
 	<footer class="self-end border-t p-4 text-center">
