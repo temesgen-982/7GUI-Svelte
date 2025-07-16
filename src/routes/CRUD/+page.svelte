@@ -43,34 +43,39 @@
 	}
 </script>
 
-<div class="grid grid-cols-2 gap-4 rounded border bg-white p-4">
-	<div class="flex justify-between">
-		<span>Filter: </span>
-		<input type="text" class="border px-2" bind:value={filterValue} />
-	</div>
-	<select
-		class="row-span-2 row-start-2 rounded border p-2"
-		size="5"
-		bind:value={person}
-		onchange={getSelectedPerson}
-	>
-		{#each filterValue ? filteredPersons : persons as person (person.id)}
-			<option value={person}>{person.firstname} {person.lastname}</option>
-		{/each}
-	</select>
-	<div class="row-start-2 grid gap-2">
-		<div class="flex gap-2">
-			<span>First Name : </span>
-			<input type="text" class="border px-2" bind:value={person.firstname} />
+<div class="page-container">
+	<div class="page-content-container grid grid-cols-2 gap-4">
+		<div class="flex justify-between">
+			<span>Filter: </span>
+			<input type="text" class="border px-2" bind:value={filterValue} />
 		</div>
-		<div class="flex gap-2">
-			<span>Last Name :</span>
-			<input type="text" class="border px-2" bind:value={person.lastname} />
+		<select
+			class="row-span-2 row-start-2 rounded border p-2"
+			size="5"
+			bind:value={person}
+			onchange={getSelectedPerson}
+		>
+			{#each filterValue ? filteredPersons : persons as person (person.id)}
+				<option value={person}>{person.firstname} {person.lastname}</option>
+			{/each}
+		</select>
+		<div class="row-start-2 grid gap-2">
+			<div class="flex gap-2">
+				<span>First Name : </span>
+				<input type="text" class="border px-2" bind:value={person.firstname} />
+			</div>
+			<div class="flex gap-2">
+				<span>Last Name :</span>
+				<input type="text" class="border px-2" bind:value={person.lastname} />
+			</div>
+		</div>
+		<div class="row-start-4 flex justify-between">
+			<button onclick={createPerson} class="rounded border px-2">Create</button>
+			<button onclick={updatePerson} class="rounded border px-2">Update</button>
+			<button onclick={deletePerson} class="rounded border px-2">delete</button>
 		</div>
 	</div>
-	<div class="row-start-4 flex justify-between">
-		<button onclick={createPerson} class="rounded border px-2">Create</button>
-		<button onclick={updatePerson} class="rounded border px-2">Update</button>
-		<button onclick={deletePerson} class="rounded border px-2">delete</button>
+	<div class="page-icon-container">
+		<img src="/assets/images/icon-comments.svg" alt="CRUD icon" />
 	</div>
 </div>

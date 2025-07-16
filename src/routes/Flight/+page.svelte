@@ -24,27 +24,32 @@
 	}
 </script>
 
-<form class="grid gap-3 rounded border bg-white p-4" onsubmit={handleFlightBooking}>
-	<select bind:value={flightType} class="rounded border p-2">
-		<option>one-way flight</option>
-		<option>return flight</option>
-	</select>
-	<input
-		bind:value={flightDate}
-		type="date"
-		min={formatDateLocal(new Date())}
-		class="rounded border p-2"
-	/>
-	<input
-		bind:value={returnDate}
-		type="date"
-		disabled={flightType === 'one-way flight'}
-		min={formatDateLocal(new Date())}
-		class="rounded border p-2"
-	/>
-	<button
-		type="submit"
-		disabled={new Date(returnDate) < new Date(flightDate)}
-		class="rounded border bg-neutral-300 p-2 disabled:bg-red-300">Book</button
-	>
-</form>
+<div class="page-container">
+	<form class="page-content-container grid gap-3" onsubmit={handleFlightBooking}>
+		<select bind:value={flightType} class="rounded border p-2">
+			<option>one-way flight</option>
+			<option>return flight</option>
+		</select>
+		<input
+			bind:value={flightDate}
+			type="date"
+			min={formatDateLocal(new Date())}
+			class="rounded border p-2"
+		/>
+		<input
+			bind:value={returnDate}
+			type="date"
+			disabled={flightType === 'one-way flight'}
+			min={formatDateLocal(new Date())}
+			class="rounded border p-2"
+		/>
+		<button
+			type="submit"
+			disabled={new Date(returnDate) < new Date(flightDate)}
+			class="rounded border bg-neutral-300 p-2 disabled:bg-red-300">Book</button
+		>
+	</form>
+	<div class="page-icon-container">
+		<img src="/assets/images/icon-airplane.svg" alt="Airplane icon" />
+	</div>
+</div>

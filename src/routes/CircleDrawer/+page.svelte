@@ -130,43 +130,49 @@
 	}
 </script>
 
-<div class="relative container">
-	<div class="flex gap-2 py-2">
-		<button disabled class="rounded border bg-white px-2 py-1">Undo</button>
-		<button disabled class="rounded border bg-white px-2 py-1">Redo</button>
+<div class="page-container">
+	<div class="page-content-container">
+		<div class="relative container">
+			<div class="flex gap-2 py-2">
+				<button disabled class="rounded border bg-white px-2 py-1">Undo</button>
+				<button disabled class="rounded border bg-white px-2 py-1">Redo</button>
+			</div>
+			<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+			<!-- svelte-ignore a11y_click_events_have_key_events -->
+			<svg
+				width="600"
+				height="200"
+				class="rounded border bg-white/90"
+				onclick={handleSvgClick}
+				oncontextmenu={handleSvgContextMenu}
+				role="img"
+			>
+				{#each circles as circle (circle.id)}
+					<circle
+						cx={circle.x}
+						cy={circle.y}
+						r={circle.r}
+						fill={selectedCircleId === circle.id ? 'rgba(0, 0, 0, 0.2)' : 'none'}
+						stroke="blue"
+						stroke-width="2"
+					/>
+				{/each}
+			</svg>
+			{#if showDiameterModal && selectedCircleId !== null}
+				{@const selectedCircle = findCircleById(selectedCircleId)}
+				{#if selectedCircle}
+					<DiameterSlider
+						initialRadius={selectedCircle.r}
+						onRadiusChange={handleRadiusChange}
+						onClose={handleCloseModal}
+						{modalX}
+						{modalY}
+					/>
+				{/if}
+			{/if}
+		</div>
 	</div>
-	<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
-	<!-- svelte-ignore a11y_click_events_have_key_events -->
-	<svg
-		width="600"
-		height="200"
-		class="rounded border bg-white"
-		onclick={handleSvgClick}
-		oncontextmenu={handleSvgContextMenu}
-		role="img"
-	>
-		{#each circles as circle (circle.id)}
-			<circle
-				cx={circle.x}
-				cy={circle.y}
-				r={circle.r}
-				fill={selectedCircleId === circle.id ? 'rgba(0, 0, 0, 0.2)' : 'none'}
-				stroke="blue"
-				stroke-width="2"
-			/>
-		{/each}
-	</svg>
-
-	{#if showDiameterModal && selectedCircleId !== null}
-		{@const selectedCircle = findCircleById(selectedCircleId)}
-		{#if selectedCircle}
-			<DiameterSlider
-				initialRadius={selectedCircle.r}
-				onRadiusChange={handleRadiusChange}
-				onClose={handleCloseModal}
-				{modalX}
-				{modalY}
-			/>
-		{/if}
-	{/if}
+	<div class="page-icon-container">
+		<img src="/assets/images/icon-circles.svg" alt="Circles icon" />
+	</div>
 </div>

@@ -31,27 +31,32 @@
 	});
 </script>
 
-<div class="grid min-w-sm gap-3 rounded border bg-white p-4">
-	<div class="flex">
-		<span>Elapsed Time:</span>
-		<div class="flex h-5 w-full items-center rounded-full border bg-gray-200 px-0.5">
-			<div
-				class="h-4 rounded-full bg-blue-600"
-				style="width: {(elapsedTime / duration) * 100}%;"
-			></div>
+<div class="page-container">
+	<div class="page-content-container grid min-w-sm gap-3">
+		<div class="flex">
+			<span>Elapsed Time:</span>
+			<div class="flex h-5 w-full items-center rounded-full border bg-gray-200 px-0.5">
+				<div
+					class="h-4 rounded-full bg-blue-600"
+					style="width: {(elapsedTime / duration) * 100}%;"
+				></div>
+			</div>
 		</div>
+		<span>{elapsedTime}</span>
+		<label class="flex gap-2">
+			<span> Duration: </span>
+			<input type="range" class="grow" bind:value={duration} max="300" />
+		</label>
+		<button
+			onclick={() => {
+				elapsedTime = 0;
+			}}
+			class="rounded border p-2"
+		>
+			Reset
+		</button>
 	</div>
-	<span>{elapsedTime}</span>
-	<label class="flex gap-2">
-		<span> Duration: </span>
-		<input type="range" class="grow" bind:value={duration} max="300" />
-	</label>
-	<button
-		onclick={() => {
-			elapsedTime = 0;
-		}}
-		class="rounded border p-2"
-	>
-		Reset
-	</button>
+	<div class="page-icon-container">
+		<img src="/assets/images/icon-time.svg" alt="Timer icon" />
+	</div>
 </div>

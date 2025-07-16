@@ -23,10 +23,8 @@
 	});
 </script>
 
-<div
-	class="relative flex w-full items-center justify-center gap-2 self-stretch justify-self-stretch"
->
-	<div class="rounded-lg bg-neutral-500/20 p-8 shadow-lg">
+<div class="page-container">
+	<div class="page-content-container">
 		<input bind:value={celsius} type="number" class="rounded border px-2" />
 		<span>Celsius</span>
 		<input
@@ -36,14 +34,12 @@
 		/>
 		<span>Fahrenheit</span>
 	</div>
-	<div
-		class="absolute right-0 flex h-full w-1/2 items-center self-stretch justify-self-end overflow-hidden opacity-25"
-	>
+	<div class="page-icon-container">
 		{#key imageSrc()}
 			<img
 				src={imageSrc()}
 				alt={imageAlt()}
-				in:fly={{ y: 50, duration: 400, easing: cubicOut }}
+				in:fly={{ y: 50, duration: 300, easing: cubicOut }}
 				out:fly={{ y: -50, duration: 400, easing: cubicOut }}
 			/>
 		{/key}

@@ -1,8 +1,8 @@
 import { fail } from '@sveltejs/kit';
 
 const post = {
-	Title: 'Hey there nigga',
-	Text: '<p>How you doing nigga</p>'
+	Title: 'Hey there everybody',
+	Text: '<p>How you doing</p>'
 };
 const comments = [{ id: 1, author: 'Alice', text: 'Great post! Very informative.' }];
 

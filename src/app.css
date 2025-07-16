@@ -1,2 +1,14 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
+
+@layer components {
+	.page-container {
+		@apply relative flex w-full items-center justify-center gap-2 self-stretch justify-self-stretch;
+	}
+	.page-icon-container {
+		@apply absolute right-0 z-10 flex h-full w-1/2 items-center self-stretch justify-self-end overflow-hidden opacity-25;
+	}
+	.page-content-container {
+		@apply z-20 rounded-lg bg-neutral-500/20 p-8 shadow-lg;
+	}
+}
