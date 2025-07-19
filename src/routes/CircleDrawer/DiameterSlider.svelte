@@ -1,26 +1,23 @@
 <script lang="ts">
-	let { initialRadius, onRadiusChange, onClose, modalX, modalY } = $props();
-	let sliderValue = $state(initialRadius);
+	import { onMount } from 'svelte';
 
-	$effect(() => {
-		sliderValue = initialRadius;
+	let { initialRadius, onUpdate, onClose } = $props();
+	let radius = $state(initialRadius);
+
+	let dialogElement: HTMLDialogElement;
+
+	onMount(() => {
+		dialogElement.showModal();
 	});
 
-	function handleSliderInput(event: Event) {
-		// Get the value from the input element and convert it to a number.
-		const value = parseInt((event.target as HTMLInputElement).value, 10);
-
-		// Update the internal state of the slider component for display.
-		sliderValue = value;
-
-		// Call the parent's callback function to update the circle's radius.
-		onRadiusChange(value);
-	}
+	$effect(() => {
+		onUpdate(radius);
+	});
 </script>
 
-<div class="absolute top-{modalY} left-{modalX}">
+<dialog bind:this={dialogElement} onclose={onClose}>
 	<h3>Adjust Diameter</h3>
-	<input type="range" min="5" max="200" value={sliderValue} oninput={handleSliderInput} />
-	<p>Radius: {sliderValue}px</p>
+	<input type="range" min="5" max="200" bind:value={radius} />
+	<p>Radius: {radius}px</p>
 	<button onclick={onClose}>Close</button>
-</div>
+</dialog>
