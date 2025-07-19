@@ -64,7 +64,7 @@
 			<svg
 				width="600"
 				height="200"
-				class="rounded border bg-white/90"
+				class=" rounded border bg-white/90"
 				role="img"
 				bind:this={svgElement}
 				onclick={handleClick}
@@ -77,7 +77,7 @@
 						r={circle.r}
 						stroke="blue"
 						stroke-width="2"
-						fill={selectedCircle?.id === circle.id ? '#ccc' : '#fff'}
+						fill={selectedCircle?.id === circle.id ? '#ccc' : 'transparent'}
 						oncontextmenu={(event) => {
 							event.preventDefault();
 							selectedCircle = circle;
@@ -85,14 +85,19 @@
 					/>
 				{/each}
 			</svg>
+			{#if selectedCircle}
+				<div
+					class="absolute z-20"
+					style="top: {selectedCircle.y + 80}px; left: {selectedCircle.x - 70}px;"
+				>
+					<DiameterSlider
+						initialRadius={selectedCircle.r}
+						onUpdate={handleRadiusUpdate}
+						onClose={() => (selectedCircle = null)}
+					/>
+				</div>
+			{/if}
 		</div>
-		{#if selectedCircle}
-			<DiameterSlider
-				initialRadius={selectedCircle.r}
-				onUpdate={handleRadiusUpdate}
-				onClose={() => (selectedCircle = null)}
-			/>
-		{/if}
 	</div>
 	<div class="page-icon-container">
 		<img src="/assets/images/icon-circles.svg" alt="Circles icon" />

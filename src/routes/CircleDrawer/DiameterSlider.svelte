@@ -7,7 +7,7 @@
 	let dialogElement: HTMLDialogElement;
 
 	onMount(() => {
-		dialogElement.showModal();
+		dialogElement.show();
 	});
 
 	$effect(() => {
@@ -15,9 +15,9 @@
 	});
 </script>
 
-<dialog bind:this={dialogElement} onclose={onClose}>
+<dialog bind:this={dialogElement} onclose={onClose} class="flex flex-col gap-2 rounded border p-3">
 	<h3>Adjust Diameter</h3>
 	<input type="range" min="5" max="200" bind:value={radius} />
 	<p>Radius: {radius}px</p>
-	<button onclick={onClose}>Close</button>
+	<button onclick={onClose} class="rounded border p-2">Close</button>
 </dialog>
