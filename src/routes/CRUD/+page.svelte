@@ -14,7 +14,7 @@
 
 	let person = $state({ id: null, firstname: '', lastname: '' });
 	let filterValue = $state('');
-	let filteredPersons = $state(persons);
+	let filteredPersons = $state();
 
 	$effect(() => {
 		if (filterValue) {
